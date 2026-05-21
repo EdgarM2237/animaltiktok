@@ -29,7 +29,7 @@ function dist(a: Animal, b: Animal) {
 }
 
 interface UseAnimalesOpts {
-  areaRef: React.RefObject<HTMLDivElement>;
+  areaRef: React.RefObject<HTMLDivElement | null>;
   onCaza?: (cazador: Animal, presa: Animal) => void;
 }
 

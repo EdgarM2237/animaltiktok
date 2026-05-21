@@ -32,7 +32,7 @@ const REGLAS_DEFAULT: ReglaRegalo[] = [
 export default function BosquePage() {
   const areaRef = useRef<HTMLDivElement>(null);
   const [toast,      setToast     ] = useState('');
-  const toastRef = useRef<ReturnType<typeof setTimeout>>();
+  const toastRef = useRef<number | undefined>(undefined);
   const [modal,      setModal     ] = useState(false);
   const [nombre,     setNombre    ] = useState('');
   const [tipoSel,    setTipoSel  ] = useState<TipoAnimal>('conejo');
@@ -43,8 +43,9 @@ export default function BosquePage() {
   function showToast(msg: string) {
     setToast(msg);
     clearTimeout(toastRef.current);
-    toastRef.current = setTimeout(() => setToast(''), 2800);
+    toastRef.current = window.setTimeout(() => setToast(''), 2800);
   }
+
 
   const onCaza = useCallback((caz: AnimalType, pre: AnimalType) => {
     showToast(`🍖 ${EMOJIS[caz.tipo]} ${caz.nombre} devoró a ${EMOJIS[pre.tipo]} ${pre.nombre}!`);
